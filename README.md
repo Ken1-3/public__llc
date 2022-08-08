@@ -14,3 +14,9 @@ from sklearn import metrics
 #Read .CSV as a table
 df = pd.read_csv(r"C:\Users\kttpa\Downloads\car_data - Sheet1.csv")
 ```
+### Since column names were not assigned in raw data, we will assign them here
+```
+#list of column names obtained from data instructions
+column_names_list = ['mpg','cylinders','displacement','horsepower','weight','acceleration','model_year','origin','car_name']
+df.columns = column_names_list
+```
