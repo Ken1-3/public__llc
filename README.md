@@ -14,7 +14,7 @@ from sklearn import metrics
 #### We must first import the dataset into the file
 ```
 #Read .CSV as a table
-df = pd.read_csv(r"C:\Users\kttpa\Downloads\car_data - Sheet1.csv")
+df = pd.read_csv(r"file_path")
 ```
 #### Since column names were not assigned in raw data, we will assign them here - discovered from associative files
 ```
