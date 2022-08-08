@@ -20,7 +20,43 @@ column_names_list = ['mpg','cylinders','displacement','horsepower','weight','acc
 df.columns = column_names_list
 ```
 
-### Based on instructions, we remove qualitative priperties
+### Based on instructions, we remove qualitative properties
 ```
 df = df.drop(['car_name'], axis=1)
+```
+
+### We will also filter out any bad data that may cause issues with the dataset
+
+```
+#clean the dataset from problematic values
+issue_list = []
+location_list = []
+
+#list to scan for values
+remove_list = [',',':','/',' ','>',';','?']
+
+#filter out any bad data
+for clean in df.itertuples():   
+    for i in clean:
+        if i in remove_list:
+            issue_list.append(i)
+            location_list.append(clean.Index)
+  
+#Create a zipped list with the rows with data integrity issues            
+final = zip(issue_list,location_list)
+
+#print the issue rows 
+for j,k in final:
+    print('Issue Character Found:',j,'  |  Deleting Row:',k)
+    
+    """Issue Character Found: ?   |  Deleting Row: 31
+       Issue Character Found: ?   |  Deleting Row: 125
+       Issue Character Found: ?   |  Deleting Row: 329
+       Issue Character Found: ?   |  Deleting Row: 335
+       Issue Character Found: ?   |  Deleting Row: 353
+       Issue Character Found: ?   |  Deleting Row: 373"""
+
+#Delete the issue rows
+df = df.drop(index = location_list)
+
 ```
