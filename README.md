@@ -1,6 +1,8 @@
 # Takehome
 
-### Importing the required modules for the baseline questions:
+## Question 1 
+
+#### Importing the required modules for the baseline questions:
 ```import pandas as pd 
 import numpy as np  
 import matplotlib.pyplot as plt 
@@ -9,23 +11,23 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression 
 from sklearn import metrics 
 ```
-### We must first import the dataset into the file
+#### We must first import the dataset into the file
 ```
 #Read .CSV as a table
 df = pd.read_csv(r"C:\Users\kttpa\Downloads\car_data - Sheet1.csv")
 ```
-### Since column names were not assigned in raw data, we will assign them here - discovered from associative files
+#### Since column names were not assigned in raw data, we will assign them here - discovered from associative files
 ```
 column_names_list = ['mpg','cylinders','displacement','horsepower','weight','acceleration','model_year','origin','car_name']
 df.columns = column_names_list
 ```
 
-### Based on instructions, we remove qualitative properties
+#### Based on instructions, we remove qualitative properties
 ```
 df = df.drop(['car_name'], axis=1)
 ```
 
-### We will also filter out any bad data that may cause issues with the dataset
+#### We will also filter out any bad data that may cause issues with the dataset
 
 ```
 #clean the dataset from problematic values
