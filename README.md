@@ -62,3 +62,16 @@ for j,k in final:
 df = df.drop(index = location_list)
 
 ```
+
+## Question 2
+
+#### Splitting into X,Y values
+```
+
+
+X = df[['cylinders','displacement','horsepower','weight','acceleration']].values
+y = df['mpg'].values
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+```
