@@ -19,3 +19,8 @@ df = pd.read_csv(r"C:\Users\kttpa\Downloads\car_data - Sheet1.csv")
 column_names_list = ['mpg','cylinders','displacement','horsepower','weight','acceleration','model_year','origin','car_name']
 df.columns = column_names_list
 ```
+
+### Based on instructions, we remove qualitative priperties
+```
+df = df.drop(['car_name'], axis=1)
+```
