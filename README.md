@@ -30,14 +30,16 @@ df = df.drop(['car_name'], axis=1)
 #### We will also filter out any bad data that may cause issues with the dataset
 
 ```
-#clean the dataset from problematic values
+#Clean the dataset from problematic values
+
+#Emptpy lists
 issue_list = []
 location_list = []
 
-#list to scan for values
+#List of items to scan for
 remove_list = [',',':','/',' ','>',';','?']
 
-#filter out any bad data
+#Filter out any bad data
 for clean in df.itertuples():   
     for i in clean:
         if i in remove_list:
@@ -47,7 +49,7 @@ for clean in df.itertuples():
 #Create a zipped list with the rows with data integrity issues            
 final = zip(issue_list,location_list)
 
-#print the issue rows 
+#Print the issue rows 
 for j,k in final:
     print('Issue Character Found:',j,'  |  Deleting Row:',k)
     
@@ -66,9 +68,11 @@ df = df.drop(index = location_list)
 
 #### Splitting into X,Y values
 ```
+#Split the data into X and Y variables (choose column data)
 X = df[['cylinders','displacement','horsepower','weight','acceleration']].values
 y = df['mpg'].values
 
+#Specify test size and set neural-net variables
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 ```
 
@@ -77,7 +81,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 #### Getting Results
 
 ```
-regressor = LinearRegression()  
+#Call linear regression module
+regressor = LinearRegression() 
+
+#Fit the regression
 regressor.fit(X_train, y_train)
 
 y_pred = regressor.predict(X_test)
@@ -119,12 +126,14 @@ scores = cross_val_score(clf, X, y, cv=5)
 #### Binary CLassification Model
 
 ```
-import statistics
-
+#Convert MPGs to list
 mpg_list = sep_df['mpg'].to_list()
 
+#Use statistics module to compute median
+import statistics
 res = statistics.median(mpg_list)
 
+#Filter DF assign binary class based on median
 for i in sep_df.itertuples():
     if i.mpg < res:
         print(i.mpg)
@@ -139,5 +148,4 @@ for i in sep_df.itertuples():
 
 
 
-From there we run this dataframe through the series scripted above.
- 
+From here we would process this DF 
