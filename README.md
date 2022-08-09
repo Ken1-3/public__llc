@@ -133,5 +133,8 @@ for i in sep_df.itertuples():
 ```
 [image](https://user-images.githubusercontent.com/89386946/183563801-e6e9655c-2e75-4ce6-aeed-01cd1ed26171.png
 
+![image](https://user-images.githubusercontent.com/89386946/183564703-44957df9-c77d-41b9-9135-ac0b7fa077ed.png)
+
+
 From there we run this dataframe through the series scripted above.
  
