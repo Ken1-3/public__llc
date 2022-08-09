@@ -43,7 +43,9 @@ remove_list = [',',':','/',' ','>',';','?']
 for clean in df.itertuples():   
     for i in clean:
         if i in remove_list:
+            #Append issue character
             issue_list.append(i)
+            #Append location of issue
             location_list.append(clean.Index)
   
 #Create a zipped list with the rows with data integrity issues            
@@ -86,15 +88,15 @@ regressor = LinearRegression()
 
 #Fit the regression
 regressor.fit(X_train, y_train)
-
+#Output
 y_pred = regressor.predict(X_test)
 ```
 
 ![image](https://user-images.githubusercontent.com/89386946/183564431-720ae0c8-cfb1-4fc3-b20c-a09c8ece0730.png)
 
 ```
+#Visual graph of predictions and actuals
 df = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
-
 df1.plot(kind='bar',figsize=(10,8))
 plt.grid(which='major', linestyle='-', linewidth='0.5', color='green')
 plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
@@ -107,6 +109,7 @@ plt.show()
 #### MSE & Cross Validation 
 
 ```
+#Calculate MSE
 mse = metrics.mean_squared_error(y_test, y_pred)
 ```
 
@@ -116,21 +119,20 @@ mse = metrics.mean_squared_error(y_test, y_pred)
 from sklearn.model_selection import cross_val_score
 from sklearn import preprocessing
 from sklearn import utils
-
 lab = preprocessing.LabelEncoder()
-y_transformed = lab.fit_transform(y)
 
+#Define CV folds
 MAX_CV_FOLDS = 10
 
-# Ensure we have data we can use for MAX_CV_FOLDS
-#Create Column Class count
-df["CLASS_COUNT"] = ''
 #Count of each grouping & filter df for the CV
+##(empty column to create proper classification col)
+df["CLASS_COUNT"] = ''
+
 df["CLASS_COUNT"] = df.groupby("mpg").transform("count")
 good_df = df[df["CLASS_COUNT"] >= MAX_CV_FOLDS]
 
 
-#Renew X and Y 
+#Redefine X and Y 
 good_X = good_df[['cylinders','displacement','horsepower','weight','acceleration']].values
 good_y = lab.fit_transform(good_df['mpg'].values)
 
@@ -156,9 +158,7 @@ res = statistics.median(mpg_list)
 #Filter DF assign binary class based on median
 for i in sep_df.itertuples():
     if i.mpg < res:
-        print(i.mpg)
-        sep_df.at[(i.Index),'mpg'] = 0
-        
+        sep_df.at[(i.Index),'mpg'] = 0 
     else:
         sep_df.at[(i.Index),'mpg'] = 1
 
