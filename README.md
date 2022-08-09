@@ -182,6 +182,7 @@ logmodel.fit(X_train,y_train)
 predictions = logmodel.predict(X_test)
 
 ```
-![image](https://user-images.githubusercontent.com/89386946/183686062-9d6888aa-5224-4055-bf3e-263b21e09343.png)
+![image](https://user-images.githubusercontent.com/89386946/183686258-fbf00e65-96fe-47af-830a-7d60c51736ab.png)
+
 
 
