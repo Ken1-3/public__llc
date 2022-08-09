@@ -123,7 +123,7 @@ scores = cross_val_score(clf, X, y, cv=5)
 
 
 ## Question 5
-#### Binary CLassification Model
+#### Binary Classification Model
 
 ```
 #Convert MPGs to list
