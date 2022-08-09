@@ -81,35 +81,39 @@ regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
 y_pred = regressor.predict(X_test)
+```
 
 ![image](https://user-images.githubusercontent.com/89386946/183564431-720ae0c8-cfb1-4fc3-b20c-a09c8ece0730.png)
 
+```
 df = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
 
 df1.plot(kind='bar',figsize=(10,8))
 plt.grid(which='major', linestyle='-', linewidth='0.5', color='green')
 plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
 plt.show()
-
+```
 ![image](https://user-images.githubusercontent.com/89386946/183564296-f096206c-11ef-4c40-9794-bb68388cb241.png)
 
-```
 
 ## Question 4
 #### MSE & Cross Validation 
 
 ```
 mse = metrics.mean_squared_error(y_test, y_pred)
+```
 
 ![image](https://user-images.githubusercontent.com/89386946/183564197-ae0127c3-58ec-4c51-b90d-e0e5b924c37d.png)
 
-
+```
 from sklearn.model_selection import cross_val_score
 
 clf = svm.SVC(kernel='linear', C=1, random_state=42)
 scores = cross_val_score(clf, X, y, cv=5)
-![image](https://user-images.githubusercontent.com/89386946/183563920-b6f85fac-4012-4f72-bf25-d3010ff0d7fc.png)
+
 ```
+![image](https://user-images.githubusercontent.com/89386946/183563920-b6f85fac-4012-4f72-bf25-d3010ff0d7fc.png)
+
 
 ## Question 5
 #### Binary CLassification Model
@@ -131,9 +135,8 @@ for i in sep_df.itertuples():
  
 
 ```
-[image](https://user-images.githubusercontent.com/89386946/183563801-e6e9655c-2e75-4ce6-aeed-01cd1ed26171.png
+![image](https://user-images.githubusercontent.com/89386946/183563801-e6e9655c-2e75-4ce6-aeed-01cd1ed26171.png)
 
-![image](https://user-images.githubusercontent.com/89386946/183564703-44957df9-c77d-41b9-9135-ac0b7fa077ed.png)
 
 
 From there we run this dataframe through the series scripted above.
