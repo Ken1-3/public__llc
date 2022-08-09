@@ -131,6 +131,7 @@ for i in sep_df.itertuples():
  
 
 ```
- ![image](https://user-images.githubusercontent.com/89386946/183563801-e6e9655c-2e75-4ce6-aeed-01cd1ed26171.png
- From there we run this dataframe through the series scripted above.
+[image](https://user-images.githubusercontent.com/89386946/183563801-e6e9655c-2e75-4ce6-aeed-01cd1ed26171.png
+
+From there we run this dataframe through the series scripted above.
  
