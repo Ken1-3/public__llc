@@ -1,6 +1,6 @@
 # Takehome
 
-## Question 1 
+## Step 1: Write code to pull the csv of your data into the program.
 
 #### Importing the required modules for the baseline questions:
 ```import pandas as pd 
@@ -66,7 +66,7 @@ for j,k in final:
 df = df.drop(index = location_list)
 ```
 
-## Question 2
+## Step 2: Split your data into training and testing sets (use a 70/30 split).
 
 #### Splitting into X,Y values
 ```
@@ -78,7 +78,7 @@ y = df['mpg'].values
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 ```
 
-## Question 3
+##  Step 3: Using your training data run a linear regression using mpg as your predicted variable and cylinders, displacement, horsepower, weight, and acceleration as your predictor variables.
 
 #### Getting Results
 
@@ -105,7 +105,8 @@ plt.show()
 ![image](https://user-images.githubusercontent.com/89386946/183564296-f096206c-11ef-4c40-9794-bb68388cb241.png)
 
 
-## Question 4
+## Step 4: Using your testing data, calculate the mean squared error (MSE) of your model. As a bonus perform 10 fold cross validation if you can. 
+
 #### MSE & Cross Validation 
 
 ```
@@ -144,7 +145,8 @@ scores = cross_val_score(clf,good_X,good_y, cv=MAX_CV_FOLDS)
 ![image](https://user-images.githubusercontent.com/89386946/183563920-b6f85fac-4012-4f72-bf25-d3010ff0d7fc.png)
 
 
-## Question 5
+## Step 5 (bonus): Transform mpg into a binary variable (splitting at the median to define “high” mpg and “low” mpg as 1, 0). Perform steps 1-4 again but instead of MSE use prediction accuracy as your performance metric and logistic regression as your model choice.
+
 #### Binary Classification Model
 
 ```
