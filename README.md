@@ -114,9 +114,29 @@ mse = metrics.mean_squared_error(y_test, y_pred)
 
 ```
 from sklearn.model_selection import cross_val_score
+from sklearn import preprocessing
+from sklearn import utils
 
-clf = svm.SVC(kernel='linear', C=1, random_state=42)
-scores = cross_val_score(clf, X, y, cv=5)
+lab = preprocessing.LabelEncoder()
+y_transformed = lab.fit_transform(y)
+
+MAX_CV_FOLDS = 10
+
+# Ensure we have data we can use for MAX_CV_FOLDS
+#Create Column Class count
+df["CLASS_COUNT"] = ''
+#Count of each grouping & filter df for the CV
+df["CLASS_COUNT"] = df.groupby("mpg").transform("count")
+good_df = df[df["CLASS_COUNT"] >= MAX_CV_FOLDS]
+
+
+#Renew X and Y 
+good_X = good_df[['cylinders','displacement','horsepower','weight','acceleration']].values
+good_y = lab.fit_transform(good_df['mpg'].values)
+
+#Run cross validation scoring
+clf = svm.SVC(kernel='linear', C=1,)
+scores = cross_val_score(clf,good_X,good_y, cv=MAX_CV_FOLDS)
 
 ```
 ![image](https://user-images.githubusercontent.com/89386946/183563920-b6f85fac-4012-4f72-bf25-d3010ff0d7fc.png)
@@ -141,11 +161,27 @@ for i in sep_df.itertuples():
         
     else:
         sep_df.at[(i.Index),'mpg'] = 1
- 
 
 ```
 ![image](https://user-images.githubusercontent.com/89386946/183563801-e6e9655c-2e75-4ce6-aeed-01cd1ed26171.png)
 
 
 
-From here we would process this DF 
+#### From here we would process this DF with a lofistic regression this time
+
+```
+X = sep_df[['cylinders','displacement','horsepower','weight','acceleration']].values
+y = sep_df['mpg'].values
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+from sklearn.linear_model import LogisticRegression
+
+logmodel = LogisticRegression()
+logmodel.fit(X_train,y_train)
+predictions = logmodel.predict(X_test)
+
+```
+![image](https://user-images.githubusercontent.com/89386946/183686062-9d6888aa-5224-4055-bf3e-263b21e09343.png)
+
+
